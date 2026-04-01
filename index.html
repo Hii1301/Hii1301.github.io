@@ -16,19 +16,83 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background: #ffffff;
+      background: #111;
+      color: #fff;
       font-family: Arial, sans-serif;
+      overflow: hidden;
     }
 
-    h1 {
-      font-size: clamp(2rem, 8vw, 5rem);
-      font-weight: 700;
-      color: #111111;
+    .screen {
       text-align: center;
+      padding: 24px;
+    }
+
+    .loading-text {
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      margin-bottom: 20px;
+      letter-spacing: 0.08em;
+    }
+
+    .bar {
+      width: min(420px, 80vw);
+      height: 18px;
+      border: 2px solid #fff;
+      border-radius: 999px;
+      overflow: hidden;
+      margin: 0 auto;
+    }
+
+    .fill {
+      height: 100%;
+      width: 0%;
+      background: #fff;
+      animation: loading 2.5s linear forwards;
+    }
+
+    .prank {
+      display: none;
+      font-size: clamp(2.2rem, 9vw, 5.5rem);
+      font-weight: 700;
+      text-align: center;
+      animation: pop 0.5s ease;
+    }
+
+    @keyframes loading {
+      from {
+        width: 0%;
+      }
+      to {
+        width: 100%;
+      }
+    }
+
+    @keyframes pop {
+      from {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>만우절~</h1>
+  <div class="screen" id="loadingScreen">
+    <div class="loading-text">로딩 중...</div>
+    <div class="bar">
+      <div class="fill"></div>
+    </div>
+  </div>
+
+  <div class="prank" id="prankText">만우절~</div>
+
+  <script>
+    setTimeout(function () {
+      document.getElementById('loadingScreen').style.display = 'none';
+      document.getElementById('prankText').style.display = 'block';
+    }, 2600);
+  </script>
 </body>
 </html>
